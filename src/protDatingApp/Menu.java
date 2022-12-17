@@ -2,6 +2,7 @@ package protDatingApp;
 import model.*;
 import java.util.Scanner;
 import java.util.Vector;
+// a class made separately that consists of the entire menu. I don't really like doing it in the main class.
 
 public class Menu {
 	static Scanner scan = new Scanner(System.in);
@@ -9,6 +10,7 @@ public class Menu {
 	static Vector<maleUser> maleList = new Vector<>();
 	static Vector<femaleUser> femaleList = new Vector<>();
 	
+	//the first thing the user sees when loading up the program, that calls to MainMenu()
 	static void Greet() {
 		System.out.println("_░▒███████\r\n"
 				+ "░██▓▒░░▒▓██\r\n"
@@ -33,6 +35,8 @@ public class Menu {
 		
 	}
 	
+	//Asks the user for inputs, which then adds into a class as well as a subclass depending on how they describe
+	//themselves. The different classes will then be added into a Vector that separates them into Males or Females.
 	static void InputData() {
 		Util.CLS();
 		System.out.println("  _                   _         _       _        \r\n"
@@ -94,6 +98,10 @@ public class Menu {
 		MainMenu();
 	}
 	
+	
+	//Uses a for loop to print out all the data in the vector. Has a conditional to output another message
+	//if the data list is empty. Uses a switch case to determine if the user wants to see all/male/female 
+	//users of this app.
 	static void ViewCandid() {
 		Util.CLS();
 		System.out.println(" __      ___               _                _____                _ _     _       _            \r\n"
@@ -181,6 +189,11 @@ public class Menu {
 		MainMenu();
 	}
 	
+	
+	//First it prints out all the data set and asks the user for which is theirs so that the program can
+	//find who their best match is by calling another function called calculateCompatibilityScore. After
+	//returning the value, there's a loop that compares the user's compatibility score with other users of the
+	//vector and prints out the one with the highest compatibility score.
 	static void Match() {
 		System.out.println("  ______ _           _ _               __  __       _       _                     \r\n"
 				+ " |  ____(_)         | (_)             |  \\/  |     | |     | |                    \r\n"
@@ -190,7 +203,8 @@ public class Menu {
 				+ " |_|    |_|_| |_|\\__,_|_|_| |_|\\__, | |_|  |_|\\__,_|\\__\\___|_| |_|\\___||___(_|_|_)\r\n"
 				+ "                                __/ |                                             \r\n"
 				+ "                               |___/                             ");
-	    
+	    //for loop to print out all the data, so the user can tell which is theirs and which they want to choose
+		//as a subject to the algorithm.	
 		for (int i = 0; i < dataList.size(); i++) {
 			  User user = dataList.get(i);
 			  System.out.println("Data No. "+(i+1));
@@ -211,6 +225,7 @@ public class Menu {
 	    
 	    double bestCompatibilityScore = 0;
 
+	    //a for loop to compare the compatibility score of every user with the picked data.
 	    for (User otherUser : dataList) {
 	        double compatibilityScore = Util.calculateCompatibilityScore(dataList.get(index), otherUser);
 	        
@@ -242,6 +257,8 @@ public class Menu {
 		Util.CLS();
 	}
 	
+	//quite similar viewing data, however the program asks for the user's name, which will then delete the class
+	//from the Vector of all corresponding names.
 	static void DelData() {
 		System.out.println("  _____       _      _   _               _____        _          /\\       /\\ \r\n"
 				+ " |  __ \\     | |    | | (_)             |  __ \\      | |        |/\\|     |/\\|\r\n"
@@ -257,6 +274,8 @@ public class Menu {
 		System.out.println("\n\n We're sad to see you go!");
 		System.out.println("However, please input your name so we can wipe your data from the system");
 		String input = scan.nextLine();
+		
+		//uses a loop to check matching names within all the vectors so that it can remove it accordingly.
 			for (int i = 0; i < dataList.size(); i++) {	
 				String currentName = dataList.get(i).getName();
 		      		if (currentName.equals(input)) {
@@ -279,6 +298,8 @@ public class Menu {
 		}
 	}
 	
+	//the main switch case that acts as the spine of the entire program. This prompts the user as to what they want
+	//to do and calls out to other function to do their intended purpose.
 	static void MainMenu() {
 		System.out.println("========================================");
 		System.out.println("              MAIN MENU!!!");

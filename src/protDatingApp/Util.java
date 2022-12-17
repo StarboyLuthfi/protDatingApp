@@ -5,17 +5,22 @@ import model.*;
 public class Util {
 	static Scanner scan = new Scanner(System.in);
 	
+	//basic pressEnter function
 	static void PressEnter() {
 		System.out.println("\n\nPress Enter to Continue");
 		scan.nextLine();
 	}
 	
+	//function to clear skin for cleaner look
 	static void CLS() {
 		for(int i=0; i<50; i++) {
 			System.out.println("\n");
 		}
 	}
 	
+	//the algorithm that increases a user compatibility score with another, according to if they
+	//have similar attributes, or if their attributes matches well with what another person is
+	//looking for in a partner.
 	public static double calculateCompatibilityScore(User user, User otherUser) {
 	    double compatibilityScore = 0;
 
