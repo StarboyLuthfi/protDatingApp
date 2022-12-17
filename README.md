@@ -1,1 +1,1 @@
-# protDatingApp
+A basic crappy dating app algorithm that takes in user inputs such as their attributes, and matches them with people who have similar attributes or with what they desire in a partner. This program is extremely flawed and has not been sanded down to perfection, but is enough as a demonstration.
